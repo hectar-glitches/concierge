@@ -1,0 +1,198 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background: #000000;
+}
+
+.app {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.app-header {
+  background: #000000;
+  color: white;
+  padding: 60px 20px 40px 20px;
+  border-bottom: 1px solid #2a2a2a;
+}
+
+.header-content {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.app-header h1 {
+  margin: 0;
+  font-size: 48px;
+  font-weight: 600;
+  letter-spacing: -1.5px;
+}
+
+.tagline {
+  margin: 12px 0 0 0;
+  font-size: 16px;
+  opacity: 0.6;
+  font-weight: 400;
+}
+
+.app-main {
+  flex: 1;
+  padding: 40px 20px;
+}
+
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.time-filter {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 24px;
+}
+
+.time-filter button {
+  padding: 12px 24px;
+  background: transparent;
+  border: 1px solid #2a2a2a;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  color: #666666;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.time-filter button:hover {
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.05);
+  border-color: #444444;
+}
+
+.time-filter button.active {
+  background: #2563eb;
+  color: white;
+  border-color: #2563eb;
+}
+
+.loading {
+  text-align: center;
+  padding: 60px 20px;
+}
+
+.spinner {
+  width: 40px;
+  height: 40px;
+  margin: 0 auto 16px;
+  border: 4px solid #e5e7eb;
+  border-top-color: #1e3a8a;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.loading p {
+  color: #6b7280;
+  font-size: 14px;
+}
+
+.error {
+  text-align: center;
+  padding: 40px 20px;
+  background: #fef2f2;
+  border-radius: 8px;
+  color: #dc2626;
+}
+
+.error button {
+  margin-top: 16px;
+  padding: 10px 20px;
+  background: #dc2626;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.error button:hover {
+  background: #b91c1c;
+}
+
+.empty-state {
+  text-align: center;
+  padding: 60px 20px;
+  background: transparent;
+  border-radius: 8px;
+  border: 1px solid #2a2a2a;
+}
+
+.empty-state h3 {
+  margin: 0 0 8px 0;
+  font-size: 18px;
+  color: #ffffff;
+  font-weight: 500;
+}
+
+.empty-state p {
+  margin: 0;
+  color: #666666;
+  font-size: 14px;
+}
+
+.events-list {
+  margin-top: 24px;
+}
+
+.events-count {
+  margin-bottom: 16px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #9ca3af;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.app-footer {
+  background: #000000;
+  padding: 40px 24px;
+  text-align: center;
+  border-top: 1px solid #2a2a2a;
+}
+
+.app-footer p {
+  margin: 0;
+  font-size: 13px;
+  color: #646363ff;
+}
+
+@media (max-width: 768px) {
+  .app-header {
+    padding: 30px 20px;
+  }
+
+  .app-header h1 {
+    font-size: 28px;
+  }
+
+  .time-filter {
+    flex-direction: column;
+  }
+
+  .time-filter button {
+    width: 100%;
+  }
+}

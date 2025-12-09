@@ -109,9 +109,28 @@ def health():
 
 @app.route('/api/events')
 def get_events():
+    from datetime import datetime, timedelta
+    from flask import request
+    
+    days = int(request.args.get('days', 30))
+    tag = request.args.get('tag')
+    
+    now = datetime.utcnow()
+    end_date = now + timedelta(days=days)
+    
+    filtered = []
+    for event in EVENTS:
+        event_time = datetime.fromisoformat(event['start_time'])
+        if event_time >= now and event_time <= end_date:
+            if tag is None or event['tag'] == tag:
+                filtered.append(event)
+    
+    # Sort by start time
+    filtered.sort(key=lambda x: x['start_time'])
+    
     return jsonify({
-        'events': EVENTS,
-        'count': len(EVENTS)
+        'events': filtered,
+        'count': len(filtered)
     })
 
 

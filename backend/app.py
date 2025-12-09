@@ -33,8 +33,22 @@ app = create_app()
 
 # Initialize database tables on startup
 with app.app_context():
-    db.create_all()
-    print("Database tables initialized")
+    try:
+        db.create_all()
+        event_count = Event.query.count()
+        print(f"✓ Database tables initialized - {event_count} events in database")
+        
+        # If database is empty, load from the committed database file or initialize with samples
+        if event_count == 0:
+            print("⚠ Database is empty - attempting to load events...")
+            # Just create the default sources so the database isn't completely empty
+            from init_db import init_db
+            init_db()
+            print(f"✓ Initialized database with {Event.query.count()} events")
+    except Exception as e:
+        print(f"✗ Database initialization failed: {e}")
+        import traceback
+        traceback.print_exc()
 
 
 # ============================================================================

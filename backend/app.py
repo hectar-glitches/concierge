@@ -31,6 +31,11 @@ def create_app():
 
 app = create_app()
 
+# Initialize database tables on startup
+with app.app_context():
+    db.create_all()
+    print("Database tables initialized")
+
 
 # ============================================================================
 # API Routes

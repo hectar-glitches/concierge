@@ -1,0 +1,11 @@
+[build]
+builder = "nixpacks"
+buildCommand = "pip install -r requirements.txt"
+
+[deploy]
+startCommand = "gunicorn -b :$PORT app:app"
+restartPolicyType = "always"
+restartPolicyMaxRetries = 10
+
+[service]
+source = "backend"

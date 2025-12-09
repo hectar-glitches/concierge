@@ -4,16 +4,13 @@ WORKDIR /app
 
 # Install dependencies
 COPY requirements.txt .
-RUN pip install --no-cache-dir -r requirements.txt gunicorn
+RUN pip install --no-cache-dir flask flask-cors gunicorn
 
 # Copy application
-COPY . .
-
-# Ensure instance directory exists with database
-RUN mkdir -p instance
+COPY app_simple.py ./app.py
 
 # Expose port
 EXPOSE 5000
 
-# Run application with Railway's PORT variable
-CMD gunicorn -w 4 -b 0.0.0.0:${PORT:-5000} --timeout 120 app:app
+# Run application
+CMD gunicorn -w 2 -b 0.0.0.0:${PORT:-5000} app:app
